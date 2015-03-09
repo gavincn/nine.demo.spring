@@ -58,19 +58,20 @@ public class WebController {
 
     @RequestMapping(value = "/databind", method = RequestMethod.POST)
     public ModelAndView databind(HttpServletRequest request, HttpServletResponse response,
-                                 @RequestParam("name") String name,
-                                 @RequestParam(value="formFile", required=false) MultipartFile file) throws Exception {
-
-        String password = ServletRequestUtils.getStringParameter(request, "password");
-        System.out.println("this is web controller databind--" + password);
-//        MultipartHttpServletRequest multipartHttpServletRequest = (MultipartHttpServletRequest) request;
-
-        System.out.println("zhuanhuan ");
-
-//        MultipartFile multipartFile = multipartHttpServletRequest.getFile("formFile");
+                                 @RequestParam("name") String name
+                                 /*,@RequestParam(value="formFile", required=false) MultipartFile file*/) throws Exception {
 
         ModelAndView mv = new ModelAndView();
-        mv.addObject(file.getName());
+        if (request instanceof MultipartHttpServletRequest) {
+            MultipartHttpServletRequest multipartHttpServletRequest = (MultipartHttpServletRequest) request;
+            MultipartFile multipartFile = multipartHttpServletRequest.getFile("formFile");
+            mv.addObject("fileName",multipartFile.getOriginalFilename());
+        }
+
+        String password = ServletRequestUtils.getStringParameter(request, "password");
+//        String name = ServletRequestUtils.getStringParameter(request, "name");
+//        System.out.println("this is web controller databind--" + name + "\t" + password);
+
         mv.addObject("name", name);
         mv.addObject("password", password);
         mv.setViewName("main");

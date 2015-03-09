@@ -12,6 +12,8 @@
 </head>
 <body>
 this is main jsp
-${message}
+${name}
+${password}
+${fileName}
 </body>
 </html>

@@ -51,7 +51,7 @@
         4、多个值用逗号分隔
         <param-value>classpath*:/springMVC.xml</param-value>-->
 
-    <error-page>
+    <!--<error-page>
         <error-code>500</error-code>
         <location>/WEB-INF/views/errors/500.jsp</location>
     </error-page>
@@ -66,6 +66,6 @@
     <error-page>
         <exception-type>java.lang.Throwable</exception-type>
         <location>/WEB-INF/views/errors/500.jsp</location>
-    </error-page>
+    </error-page>-->
 
 </web-app>

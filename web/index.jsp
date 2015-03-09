@@ -12,5 +12,6 @@
 </head>
 <body>
 hello world!
+<a href="/web/login">login</a>
 </body>
 </html>
