@@ -13,8 +13,8 @@ public class RoleInterceptor extends BaseInterceptor {
 
     @Override
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object o) throws Exception {
-        System.out.println("this is RoleInterceptor!");
-        System.out.println(o);//controller || method
+//        System.out.println("this is RoleInterceptor!");
+//        System.out.println(o);//controller || method
         HttpSession session = request.getSession();
         if (session.getAttribute("user") == null) {
             System.out.println("throw authorization exception");
