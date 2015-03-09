@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:mvc="http://www.springframework.org/schema/mvc"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc.xsd">
+
+    <!-- 自动扫描的包名 -->
+    <!-- 开启controller注解支持 -->
+    <!-- use-default-filters="false" 只扫描指定的注解 -->
+    <context:component-scan base-package="com.demo.controllers" use-default-filters="false">
+        <context:include-filter type="annotation" expression="org.springframework.stereotype.Controller"/>
+    </context:component-scan>
+    <!-- 默认的注解映射的支持 -->
+    <context:annotation-config/>
+    <!-- 视图解释类 -->
+    <bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+        <property name="viewClass" value="org.springframework.web.servlet.view.JstlView"/>
+        <property name="prefix" value="/WEB-INF/views/"/><!--/jsp/   -/web/jsp/ -->
+        <property name="suffix" value=".jsp"/>
+    </bean>
+
+    <!-- 默认的注解映射的支持 -->
+    <mvc:annotation-driven/>
+
+    <!-- 如果当前请求为“/”时，则转发到“/helloworld/index” -->
+    <!--<mvc:view-controller path="/" view-name="forward:/helloworld/index"/>-->
+
+    <!-- 静态资源映射 -->
+    <mvc:resources mapping="/js/**" location="/WEB-INF/js/" />
+    <mvc:resources mapping="/css/**" location="/WEB-INF/css/" />
+    <mvc:resources mapping="/fonts/**" location="/WEB-INF/fonts/" />
+    <mvc:resources mapping="/plugins/**" location="/WEB-INF/plugins/" />
+    <mvc:resources mapping="images/**" location="/WEB-INF/images/" />
+    <!-- 当上面要访问的静态资源不包括在上面的配置中时，则根据此配置来访问 -->
+    <mvc:default-servlet-handler/>
+
+
+    <mvc:interceptors>
+        <bean class="com.demo.interceptor.AllInterceptor"/>
+        <mvc:interceptor>
+            <mvc:mapping path="/login"/>
+            <bean class="com.demo.interceptor.TimeInterceptor"/>
+        </mvc:interceptor>
+
+        <mvc:interceptor>
+            <mvc:mapping path="/*"/>
+            <mvc:exclude-mapping path="/login"/>
+            <!-- /不行 -->
+            <bean class="com.demo.interceptor.RoleInterceptor"/>
+        </mvc:interceptor>
+    </mvc:interceptors>
+
+    <bean class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
+        <property name="maxUploadSize" value="5120"/>
+        <property name="maxInMemorySize" value="1024"/>
+        <property name="defaultEncoding" value="UTF-8"/>
+    </bean>
+
+    <!--<bean class="org.springframework.web.servlet.handler.SimpleMappingExceptionResolver">
+        <property name="exceptionMappings">
+            <props>
+                <prop key="java.lang.Exception">error</prop>
+            </props>
+        </property>
+    </bean>
+
+    <bean id="exceptionResolver"
+          class="org.springframework.web.servlet.handler.SimpleMappingExceptionResolver"        >
+
+        <property name="exceptionMappings">
+            <props>
+                <prop key="com.demo.exceptions.GenericException">GenericExceptionPage</prop>
+                <prop key="java.lang.Exception">error</prop>
+            </props>
+        </property>
+
+        <property name="defaultErrorView" value="defaulterror"></property>
+    </bean>-->
+
+</beans>

@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+       http://www.springframework.org/schema/beans/spring-beans.xsd
+       http://www.springframework.org/schema/context
+       http://www.springframework.org/schema/context/spring-context.xsd">
+
+    <!--<import resource="springMVC.xml"/>-->
+    <!-- 1.支持注解 -->
+    <!--Spring3.1开始的注解 HandlerMapping -->
+    <!--<bean class="org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping"/>
+
+    &lt;!&ndash;Spring3.1开始的注解 HandlerAdapter &ndash;&gt;
+    <bean class="org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter">
+        &lt;!&ndash;线程安全的访问session&ndash;&gt;
+        <property name="synchronizeOnSession" value="true"/>
+    </bean>
+
+    &lt;!&ndash; 2.自动扫描，补习与1同时存在,不需要下面3的bean注册 &ndash;&gt;
+    <context:component-scan base-package="com.demo.controller"/>
+
+    &lt;!&ndash; 3.注册bean，使用则可以注释3 &ndash;&gt;
+    &lt;!&ndash;<bean class="com.demo.controller.WebController"/>&ndash;&gt;-->
+
+
+
+
+    <!--<bean id="roleInterceptor"
+          class="com.demo.interceptor.RoleInterceptor"/>
+    <bean class="org.springframework.web.servlet.handler.BeanNameUrlHandlerMapping">
+        <property name="interceptors">
+            <list>
+                &lt;!&ndash;<bean class="com.demo.interceptor.RoleInterceptor"></bean>&ndash;&gt;
+                <ref bean="roleInterceptor"/>
+            </list>
+        </property>
+    </bean>-->
+</beans>
