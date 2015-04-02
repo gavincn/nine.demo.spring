@@ -1,0 +1,53 @@
+1.在mac或linux下idea 14(可能其它版本也会出现乱码) tomcat 7在输出到控制台的日志中文乱码，解决方式
+打开tomcat启动配置 Startup/Connection选项卡下
+加一个environment variable，
+JAVA_TOOL_OPTIONS:-Dfile.encoding=UTF-8
+
+2.spring upload
+需要在form标记中增加 enctype="multipart/form-data"
+
+3.spring mvc controller 中获取application context (未使用ContextLoaderListener，applicationContext.xml)
+使用 org.springframework.web.servlet.FrameworkServlet.CONTEXT.<servlet-name>springMVC</servlet-name>
+WebApplicationContext context =
+  (WebApplicationContext)request.getServletContext().getAttribute(
+    "org.springframework.web.servlet.FrameworkServlet.CONTEXT.springMVC");
+
+ServletContext context = getServletContext();
+WebApplicationContext applicationContext = WebApplicationContextUtils.getWebApplicationContext(context);
+
+
+4.java.lang.ClassNotFoundException: #
+web3.0 web.xml不需要配置log4j2，部署时去掉log4j-web-2.2.jar
+
+5.log4j2 写文件路径配置
+注意，可能user.dir不是项目目录，是服务器目录
+
+
+
+
+
+
+
+
+
+
+
+
+n.[groovy] support
+
+'org.codehaus.groovy:groovy:2.4.1'
+<groupId>org.codehaus.groovy</groupId>
+<artifactId>groovy</artifactId>
+<version>2.4.1</version>
+
+'org.codehaus.groovy:groovy-$module:2.4.1'
+<groupId>org.codehaus.groovy</groupId>
+<artifactId>groovy-$module</artifactId>
+<version>2.4.1</version>
+"$module" stands for the different optional groovy modules
+"ant", "bsf", "console", "docgenerator", "groovydoc", "groovysh", "jmx", "json", "jsr223", "servlet", "sql", "swing", "test", "testng" and "xml".
+Example: <artifactId>groovy-sql</artifactId>
+
+'org.codehaus.groovy:groovy-all:2.4.1'
+<groupId>org.codehaus.groovy</groupId> <artifactId>groovy-all</artifactId> <version>2.4.1</version>
+The core plus all the modules. Optional dependencies are marked as optional. You may need to include some of the optional dependencies to use some features of Groovy, e.g. AntBuilder, GroovyMBeans, etc.

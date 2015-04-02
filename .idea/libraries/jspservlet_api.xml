@@ -1,5 +1,5 @@
 <component name="libraryTable">
-  <library name="jsp-api">
+  <library name="jspservlet-api">
     <CLASSES>
       <root url="jar://$USER_HOME$/devapps/servers/apache-tomcat-7.0.8/lib/jsp-api.jar!/" />
       <root url="jar://$USER_HOME$/devapps/servers/apache-tomcat-7.0.8/lib/servlet-api.jar!/" />

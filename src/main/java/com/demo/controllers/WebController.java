@@ -1,5 +1,6 @@
 package com.demo.controllers;
 
+import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.ServletRequestUtils;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -16,6 +17,7 @@ import javax.servlet.http.HttpServletResponse;
  * Created by pingping on 三月/6/15.
  */
 @Controller
+@Component
 //@RequestMapping(value = "/demo") // xxx/demo/default  || xxx/demo/hello
 public class WebController {
 
@@ -53,6 +55,8 @@ public class WebController {
     //xxx/hello?type=inquire
     @RequestMapping(value = "/hello1", params = "type!=submit")
     public String list(HttpServletRequest request, HttpServletResponse response) throws Exception {
+//        return "forward:/order/add";
+//        return "redirect:/login.jsp";
         return "success";
     }
 
@@ -76,6 +80,8 @@ public class WebController {
         mv.addObject("password", password);
         mv.setViewName("main");
 
+//        return "forward:/order/add";
+//        return "redirect:/login.jsp";
         return mv;
     }
 }

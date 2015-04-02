@@ -13,7 +13,6 @@
 <body>
 this is main jsp
 ${name}
-${password}
 ${fileName}
 </body>
 </html>

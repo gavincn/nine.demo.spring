@@ -1,3 +1,5 @@
+<%@ page import="org.springframework.web.context.WebApplicationContext" %>
+<%@ page import="org.springframework.web.context.support.WebApplicationContextUtils" %>
 <%--
   Created by IntelliJ IDEA.
   User: pingping
@@ -11,7 +13,12 @@
     <title>spring demo</title>
 </head>
 <body>
-hello world!
-<a href="/web/login">login</a>
+<h1>Spring MVC</h1>
+</hr>
+    <ul>
+      <li>Spring Demos</li>
+    </ul>
+<a href="/web/tologin">login</a>
+
 </body>
 </html>

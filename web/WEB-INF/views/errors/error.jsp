@@ -16,10 +16,13 @@
 </html>--%>
 <%@page contentType="text/html;charset=UTF-8" isErrorPage="true"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<%@page import="org.slf4j.Logger,org.slf4j.LoggerFactory"%>
 <%@page import="java.io.*"%>
+<%@ page import="org.apache.logging.log4j.Logger,org.apache.logging.log4j.LogManager" %>
 <c:set var="ctx" value="${pageContext.request.contextPath}" />
 <%
+  Logger logger = LogManager.getLogger();
+//  Exception e = (Exception)request.getAttribute("exception");
+//  logger.error("$$$$$$$$$$$$",e);
   response.setStatus(200);
   Throwable ex = null;
   if (exception != null)
@@ -28,20 +31,9 @@
     ex = (Throwable) request.getAttribute("javax.servlet.error.exception");
 
   //记录日志
-  Logger logger = LoggerFactory.getLogger("500.jsp");
+
   logger.error(ex.getMessage(), ex);
 %>
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <title>500 - 系统内部错误</title>
-  <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
-  <meta http-equiv="Cache-Control" content="no-store" />
-  <meta http-equiv="Pragma" content="no-cache" />
-  <meta http-equiv="Expires" content="0" />
-</head>
-
-<body>
 <div style="overflow: auto">
   <h2>error - 系统发生内部错误</h2>
   <br />

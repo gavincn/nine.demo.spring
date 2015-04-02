@@ -7,7 +7,7 @@
        http://www.springframework.org/schema/context
        http://www.springframework.org/schema/context/spring-context.xsd">
 
-    <!--<import resource="springMVC.xml"/>-->
+    <!--<import resource="spring-mvc.xml"/>-->
     <!-- 1.支持注解 -->
     <!--Spring3.1开始的注解 HandlerMapping -->
     <!--<bean class="org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping"/>

@@ -11,9 +11,9 @@
     <title></title>
 </head>
 <body>
-this is /jsp/index.jsp
+this is /jsp/login.jsp
 ${message}
-<form method="post" enctype="multipart/form-data" action="/web/databind">
+<form method="post" enctype="multipart/form-data" action="/web/login">
   <ul>
     <li>name:<input name="name"/></li>
     <li>password:<input name="password"/> </li>

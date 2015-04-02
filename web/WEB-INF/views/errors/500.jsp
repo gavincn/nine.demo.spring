@@ -6,10 +6,8 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@page contentType="text/html;charset=UTF-8" isErrorPage="true"%>
-<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<%@page import="org.slf4j.Logger,org.slf4j.LoggerFactory"%>
+<%@page import="org.apache.logging.log4j.Logger,org.apache.logging.log4j.LogManager" %>
 <%@page import="java.io.*"%>
-<c:set var="ctx" value="${pageContext.request.contextPath}" />
 <%
   response.setStatus(200);
   Throwable ex = null;
@@ -19,7 +17,7 @@
     ex = (Throwable) request.getAttribute("javax.servlet.error.exception");
 
   //记录日志
-  Logger logger = LoggerFactory.getLogger("500.jsp");
+  Logger logger = LogManager.getLogger("500.jsp");
   logger.error(ex.getMessage(), ex);
 %>
 <!DOCTYPE html>
@@ -46,6 +44,10 @@
       out.print(sw);
     %>
   </div>
+  <%
+    Exception e = (Exception)request.getAttribute("exception");
+    out.print(e.getMessage());
+  %>
   <a class="btn btn-primary" href="${ctx}">返回首页</a>
 </div>
 </body>
