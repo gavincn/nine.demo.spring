@@ -11,7 +11,7 @@
     <!-- 开启controller注解支持 -->
     <!-- use-default-filters="false" 只扫描指定的注解 -->
     <context:component-scan base-package="com.demo.*"/>
-        <!--<context:include-filter type="annotation" expression="org.springframework.stereotype.Controller"/>-->
+    <!--<context:include-filter type="annotation" expression="org.springframework.stereotype.Controller"/>-->
     <!--</context:component-scan>-->
     <!-- 默认的注解映射的支持 -->
     <context:annotation-config/>
@@ -62,16 +62,32 @@
         <property name="defaultEncoding" value="UTF-8"/>
     </bean>
 
+    <!--<bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+        <property name="driverClassName" value="org.hsqldb.jdbcDriver"/>
+        <property name="url" value="jdbc:hsqldb:res:/hsqldb/test"/>
+        <property name="username" value="sa"/>
+        <property name="password" value=""/>
+    </bean>-->
     <!-- spring security -->
 
     <bean id="myAuthentication" class="com.demo.security.MyAuthentication"/>
 
     <security:http auto-config="true">
+        <security:intercept-url pattern="/index.jsp" access="IS_AUTHENTICATED_ANONYMOUSLY"/>
         <security:intercept-url pattern="/login" access="IS_AUTHENTICATED_ANONYMOUSLY"/>
         <!--要求用户必须有ROLE_USER权限 ROLE_USER为数据库中的一个字段值-->
-        <security:intercept-url pattern="/**" access="ROLE_USER"/>
-        <security:form-login/>
+        <security:intercept-url pattern="/admin" access="ROLE_ADMIN"/>
+        <security:intercept-url pattern="/main.jsp" access="ROLE_USER"/>
+        <security:form-login login-page="/tologin"/>
     </security:http>
+
+   <!-- <security:jdbc-user-service data-source-ref="dataSource"
+                                users-by-username-query=""
+                                authorities-by-username-query=""/>-->
+    <security:user-service>
+        <security:user name="admin" password="admin" authorities="ROLE_ADMIN"/>
+        <security:user name="liu" password="liu" authorities="ROLE_USER"/>
+    </security:user-service>
     <security:authentication-manager>
         <security:authentication-provider user-service-ref="myAuthentication"/>
     </security:authentication-manager>
@@ -95,9 +111,9 @@
     <!--<aop:aspectj-autoproxy proxy-target-class="true" />-->
     <!-- 或<aop:aspectj-autoproxy/> 或 下句启用@AspectJ 支持 -->
     <!--<bean class="org.springframework.aop.aspectj.annotation.AnnotationAwareAspectJAutoProxyCreator" />-->
-   <!-- <aop:config>
-        <aop:aspect ref="l">
-            <aop:before method="logBefore" pointcut="execution (* com.demo.handler.UserSecurityHandler.*(..))" />
-        </aop:aspect>
-    </aop:config>-->
+    <!-- <aop:config>
+         <aop:aspect ref="l">
+             <aop:before method="logBefore" pointcut="execution (* com.demo.handler.UserSecurityHandler.*(..))" />
+         </aop:aspect>
+     </aop:config>-->
 </beans>
