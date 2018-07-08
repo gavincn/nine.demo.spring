@@ -41,8 +41,8 @@ public class LoginController  {
     public ModelAndView login(HttpServletRequest request,HttpServletResponse response)throws Exception {
         logger.entry();
 
-        String name = request.getParameter("name");
-        String pwd = request.getParameter("password");
+        String name = request.getParameter("j_username");
+        String pwd = request.getParameter("j_password");
         String fileName = request.getParameter("formFile");
 
         logger.debug(name+":"+pwd);
@@ -76,8 +76,15 @@ public class LoginController  {
 
     @RequestMapping(value = "tologin")
     public String redirtLogin1(HttpServletRequest request,HttpServletResponse response){
-        logger.debug("tologin1");
+//        logger.debug("tologin1");
         return "login";
+//        return "redirect:/index.jsp";
+    }
+
+    @RequestMapping(value = "toupload")
+    public String toupload(HttpServletRequest request,HttpServletResponse response){
+        logger.debug("toupload");
+        return "upload";
 //        return "redirect:/index.jsp";
     }
 

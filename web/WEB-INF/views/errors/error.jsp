@@ -17,11 +17,12 @@
 <%@page contentType="text/html;charset=UTF-8" isErrorPage="true"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@page import="java.io.*"%>
+<%@page import="java.lang.Exception"%>
 <%@ page import="org.apache.logging.log4j.Logger,org.apache.logging.log4j.LogManager" %>
 <c:set var="ctx" value="${pageContext.request.contextPath}" />
 <%
   Logger logger = LogManager.getLogger();
-//  Exception e = (Exception)request.getAttribute("exception");
+  exception = (Exception)request.getAttribute("exception");
 //  logger.error("$$$$$$$$$$$$",e);
   response.setStatus(200);
   Throwable ex = null;
@@ -30,16 +31,21 @@
   if (request.getAttribute("javax.servlet.error.exception") != null)
     ex = (Throwable) request.getAttribute("javax.servlet.error.exception");
 
-  //记录日志
+  if(ex == null)
+    ex = new Exception("unkonw exception");
 
-  logger.error(ex.getMessage(), ex);
+//  logger.error(ex.getMessage(), ex);
 %>
 <div style="overflow: auto">
+  <a class="btn btn-primary" href="${ctx}">返回首页</a>
   <h2>error - 系统发生内部错误</h2>
   <br />
   <div>错误详细信息：</div>
   <div class="alert alert-error">
     <%=ex.getClass().getName() + "(" + ex.getLocalizedMessage() + ")"%><br />
+    <br />
+    <hr />
+    <br />
     <%
       StringWriter sw = new StringWriter();
       PrintWriter pw = new PrintWriter(sw);
@@ -47,7 +53,7 @@
       out.print(sw);
     %>
   </div>
-  <a class="btn btn-primary" href="${ctx}">返回首页</a>
+
 </div>
 </body>
 </html>

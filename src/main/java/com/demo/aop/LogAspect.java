@@ -50,7 +50,9 @@ public class LogAspect {
         log.debug("目标方法中抛出的异常：" + ex);
     }
 
-    *//**
+    */
+
+    /**
      * Object[] getArgs(): 返回执行目标方法时的参数。<p>
      * Signature getSignature(): 返回被增强的方法的相关信息。<p>
      * Object getTarget(): 返回被织入增强处理的目标对象。<p>

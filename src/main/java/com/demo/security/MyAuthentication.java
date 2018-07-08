@@ -12,8 +12,10 @@ public class MyAuthentication implements UserDetailsService{
     @Override
     public UserDetails loadUserByUsername(String s) throws UsernameNotFoundException {
 
-        UserDetails userDetails = new MyUserDetals();
-
+        MyUserDetals userDetails = new MyUserDetals();
+        userDetails.setUsername("liu");
+        userDetails.setPassword("liu");
+        userDetails.setRole("ROLE_USER");
         return userDetails;
     }
 }

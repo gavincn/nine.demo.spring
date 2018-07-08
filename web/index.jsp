@@ -15,10 +15,14 @@
 <body>
 <h1>Spring MVC</h1>
 </hr>
-    <ul>
+<ul>
       <li>Spring Demos</li>
+      <li><a href="/web/tologin">login</a></li>
+      <li><a href="/web/toupload">upload</a></li>
     </ul>
-<a href="/web/tologin">login</a>
+
+
+
 
 </body>
 </html>

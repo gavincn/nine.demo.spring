@@ -9,8 +9,8 @@ import org.springframework.web.servlet.HandlerAdapter;
 import org.springframework.web.servlet.HandlerExecutionChain;
 import org.springframework.web.servlet.HandlerMapping;
 import org.springframework.web.servlet.ModelAndView;
-import org.springframework.web.servlet.mvc.annotation.AnnotationMethodHandlerAdapter;
-import org.springframework.web.servlet.mvc.annotation.DefaultAnnotationHandlerMapping;
+//import org.springframework.web.servlet.mvc.annotation.AnnotationMethodHandlerAdapter;
+//import org.springframework.web.servlet.mvc.annotation.DefaultAnnotationHandlerMapping;
 
 import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletRequest;
@@ -35,10 +35,10 @@ public class JUnitActionBase {
             TestCase.assertNotNull(context);
             msc.setAttribute("org.springframework.web.servlet.FrameworkServlet.CONTEXT.springMVC", context);
 //            msc.setAttribute(WebApplicationContext.ROOT_WEB_APPLICATION_CONTEXT_ATTRIBUTE, context);
-            handlerMapping = (HandlerMapping) context
+            /*handlerMapping = (HandlerMapping) context
                     .getBean(DefaultAnnotationHandlerMapping.class);
             handlerAdapter = (HandlerAdapter) context.getBean(
-                    context.getBeanNamesForType(AnnotationMethodHandlerAdapter.class)[0]);
+                    context.getBeanNamesForType(AnnotationMethodHandlerAdapter.class)[0]);*/
         }
     }
 
